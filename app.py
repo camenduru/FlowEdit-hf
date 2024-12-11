@@ -84,7 +84,7 @@ def FlowEditRun(
     if model_type == 'SD3':
         try:
             print(f'token: {oauth_token.token}')
-            huggingface_hub.get_hf_file_metadata(huggingface_hub.hf_hub_url(SD3STRING, 'sd3_medium.safetensors'),
+            huggingface_hub.get_hf_file_metadata(huggingface_hub.hf_hub_url(SD3STRING, 'transformer/diffusion_pytorch_model.safetensors'),
                                                     token=oauth_token.token)
             print('Has Access')
         # except huggingface_hub.utils._errors.GatedRepoError:
