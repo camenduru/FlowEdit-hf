@@ -233,7 +233,9 @@ with gr.Blocks() as demo:
         tar_guidance_scale = gr.Slider(minimum=1.0, maximum=30.0, value=13.5, label="tar_guidance_scale")
     
     with gr.Row():
-        submit_button = gr.Button("Run FlowEdit", variant="primary")
+        submit_button = gr.Button("Run FlowEdit", variant="primary",scale=3)
+        gr.LoginButton(value="Login to HF (For SD3 and FLUX access)", scale=1)
+
 
     with gr.Accordion(label="Advanced Settings", open=False):
         # additional inputs
@@ -242,29 +244,28 @@ with gr.Blocks() as demo:
         seed = gr.Number(value=42, label="seed")
 
 
-    with gr.Row():
 
-        submit_button.click(
-                            fn=FlowEditRun, 
-                            inputs=[
-                            image_src,
-                            model_type,
-                            T_steps,
-                            src_guidance_scale,
-                            tar_guidance_scale,
-                            n_max,
-                            src_prompt,
-                            tar_prompt,
-                            n_min,
-                            n_avg,
-                            seed,
-                            ],
-                            outputs=[
-                            image_tar[0],
-                            ],
-                            scale=3)
-        
-        gr.LoginButton(value="Login to HF (For SD3 and FLUX access)", scale=1)
+
+    submit_button.click(
+                        fn=FlowEditRun, 
+                        inputs=[
+                        image_src,
+                        model_type,
+                        T_steps,
+                        src_guidance_scale,
+                        tar_guidance_scale,
+                        n_max,
+                        src_prompt,
+                        tar_prompt,
+                        n_min,
+                        n_avg,
+                        seed,
+                        ],
+                        outputs=[
+                        image_tar[0],
+                        ],
+                        )
+    
 
     gr.Examples(
         label="Examples",
