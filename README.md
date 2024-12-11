@@ -8,6 +8,7 @@ sdk_version: 5.8.0
 app_file: app.py
 pinned: false
 license: mit
+hf_oauth: true
 short_description: 'Gradio demo for FlowEdit: Inversion-Free Text-Based Editing.'
 ---
 
