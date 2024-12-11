@@ -212,6 +212,8 @@ with gr.Blocks() as demo:
     
 
     gr.HTML(intro)
+    with gr.Row():
+        gr.LoginButton(value="Login to HF (For SD3 and FLUX access)", variant="primary")
 
     with gr.Row(equal_height=True):
         image_src = gr.Image(type="filepath", label="Source Image", value="inputs/cat.png",)
@@ -233,8 +235,7 @@ with gr.Blocks() as demo:
         tar_guidance_scale = gr.Slider(minimum=1.0, maximum=30.0, value=13.5, label="tar_guidance_scale")
     
     with gr.Row():
-        submit_button = gr.Button("Run FlowEdit", variant="primary",scale=3)
-        gr.LoginButton(value="Login to HF (For SD3 and FLUX access)", scale=1)
+        submit_button = gr.Button("Run FlowEdit", variant="primary")
 
 
     with gr.Accordion(label="Advanced Settings", open=False):
