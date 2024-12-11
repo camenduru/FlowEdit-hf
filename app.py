@@ -2,11 +2,12 @@ import gradio as gr
 import torch
 from diffusers import FluxPipeline, StableDiffusion3Pipeline
 from PIL import Image
+from typing import Optional
 
 import random
 import numpy as np
 import spaces
-
+import huggingface_hub
 from FlowEdit_utils import FlowEditSD3, FlowEditFLUX
 
 
@@ -14,10 +15,10 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 # device = "cpu"
 # model_type = 'SD3'
 
-pipe = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16)
-scheduler = pipe.scheduler
-pipe = pipe.to(device)
-loaded_model = 'SD3'
+# pipe = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16)
+# scheduler = pipe.scheduler
+# pipe = pipe.to(device)
+loaded_model = 'None'
 
 
 def on_model_change(model_type):
@@ -71,8 +72,12 @@ def FlowEditRun(
     n_min: int,
     n_avg: int,
     seed: int,
+    oauth_token: Optional[gr.OAuthToken] = None
 
     ):
+
+    if oauth_token is None:
+        raise gr.Error("Please login to HF to access SD3 and FLUX models")
 
     if not len(src_prompt):
         raise gr.Error("source prompt cannot be empty")
@@ -237,26 +242,29 @@ with gr.Blocks() as demo:
         seed = gr.Number(value=42, label="seed")
 
 
+    with gr.Row():
 
-    submit_button.click(
-                        fn=FlowEditRun, 
-                        inputs=[
-                        image_src,
-                        model_type,
-                        T_steps,
-                        src_guidance_scale,
-                        tar_guidance_scale,
-                        n_max,
-                        src_prompt,
-                        tar_prompt,
-                        n_min,
-                        n_avg,
-                        seed,
-                        ],
-                        outputs=[
-                        image_tar[0],
-                        ],
-                        )
+        submit_button.click(
+                            fn=FlowEditRun, 
+                            inputs=[
+                            image_src,
+                            model_type,
+                            T_steps,
+                            src_guidance_scale,
+                            tar_guidance_scale,
+                            n_max,
+                            src_prompt,
+                            tar_prompt,
+                            n_min,
+                            n_avg,
+                            seed,
+                            ],
+                            outputs=[
+                            image_tar[0],
+                            ],
+                            scale=3)
+        
+        gr.LoginButton(value="Login to HF (For SD3 and FLUX access)", scale=1)
 
     gr.Examples(
         label="Examples",
