@@ -10,8 +10,8 @@ import numpy as np
 import spaces
 import huggingface_hub
 from FlowEdit_utils import FlowEditSD3, FlowEditFLUX
-
-
+SD3STRING = 'stabilityai/stable-diffusion-3-medium'
+FLUXSTRING = 'black-forest-labs/FLUX.1-dev'
 device = "cuda" if torch.cuda.is_available() else "cpu"
 # device = "cpu"
 # model_type = 'SD3'
@@ -78,7 +78,29 @@ def FlowEditRun(
     ):
 
     if oauth_token is None:
-        raise gr.Error("Please login to HF to access SD3 and FLUX models")
+        raise gr.Error("You must be logged in to use Stable Diffusion 3.0 and FLUX.1 models.")
+    if model_type == 'SD3':
+        try:
+            huggingface_hub.get_hf_file_metadata(huggingface_hub.hf_hub_url(SD3STRING, 'sd3_medium.safetensors'),
+                                                    token=oauth_token.token)
+            print('Has Access')
+        # except huggingface_hub.utils._errors.GatedRepoError:
+        except huggingface_hub.errors.GatedRepoError:
+            raise gr.Error("You need to accept the license agreement to use Stable Diffusion 3. "
+                            "Visit the <a href='https://huggingface.co/stabilityai/stable-diffusion-3-medium'>"
+                            "model page</a> to get access.")
+    elif model_type == 'FLUX':
+        try:
+            huggingface_hub.get_hf_file_metadata(huggingface_hub.hf_hub_url(FLUXSTRING, 'flux1-dev.safetensors'),
+                                                    token=oauth_token.token)
+            print('Has Access')
+        # except huggingface_hub.utils._errors.GatedRepoError:
+        except huggingface_hub.errors.GatedRepoError:
+            raise gr.Error("You need to accept the license agreement to use FLUX.1. "
+                            "Visit the <a href='https://huggingface.co/black-forest-labs/FLUX.1-dev'>"
+                            "model page</a> to get access.")
+    else:
+        raise NotImplementedError(f"Model type {model_type} not implemented")
 
     if not len(src_prompt):
         raise gr.Error("source prompt cannot be empty")
