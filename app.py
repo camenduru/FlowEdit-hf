@@ -83,6 +83,7 @@ def FlowEditRun(
         raise gr.Error("You must be logged in to use Stable Diffusion 3.0 and FLUX.1 models.")
     if model_type == 'SD3':
         try:
+            print(f'token: {oauth_token.token}')
             huggingface_hub.get_hf_file_metadata(huggingface_hub.hf_hub_url(SD3STRING, 'sd3_medium.safetensors'),
                                                     token=oauth_token.token)
             print('Has Access')
