@@ -12,7 +12,7 @@ import huggingface_hub
 
 
 from FlowEdit_utils import FlowEditSD3, FlowEditFLUX
-SD3STRING = 'stabilityai/stable-diffusion-3-medium'
+SD3STRING = 'stabilityai/stable-diffusion-3-medium-diffusers'
 FLUXSTRING = 'black-forest-labs/FLUX.1-dev'
 device = "cuda" if torch.cuda.is_available() else "cpu"
 # device = "cpu"
@@ -90,7 +90,7 @@ def FlowEditRun(
         # except huggingface_hub.utils._errors.GatedRepoError:
         except huggingface_hub.errors.GatedRepoError:
             raise gr.Error("You need to accept the license agreement to use Stable Diffusion 3. "
-                            "Visit the <a href='https://huggingface.co/stabilityai/stable-diffusion-3-medium'>"
+                            "Visit the <a href='https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers'>"
                             "model page</a> to get access.")
     # elif model_type == 'FLUX':
     #     try:
