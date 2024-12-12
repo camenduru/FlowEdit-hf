@@ -20,7 +20,8 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 
 pipe_sd3 = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16, token=os.getenv('HF_ACCESS_TOK'))
 pipe_flux = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.float16, token=os.getenv('HF_ACCESS_TOK'))
-
+pipe_sd3.to(device)
+pipe_flux.to(device)
 
 # scheduler = pipe.scheduler
 # pipe = pipe.to(device)
@@ -96,10 +97,10 @@ def FlowEditRun(
 
     if model_type == 'FLUX':
         # pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.float16, token=os.getenv('HF_ACCESS_TOK'))
-        pipe = copy.deepcopy(pipe_flux) # still on CPU
+        pipe = pipe_flux 
     elif model_type == 'SD3':
         # pipe = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16, token=os.getenv('HF_ACCESS_TOK'))
-        pipe = copy.deepcopy(pipe_sd3) # still on CPU
+        pipe = pipe_sd3
     else:
         raise NotImplementedError(f"Model type {model_type} not implemented")
 
