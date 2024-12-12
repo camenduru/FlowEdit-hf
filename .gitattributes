@@ -42,3 +42,6 @@ inputs/kill_bill.png filter=lfs diff=lfs merge=lfs -text
 example_outs/gas_cafe_cvpr.png filter=lfs diff=lfs merge=lfs -text
 example_outs/iguana_dragon.png filter=lfs diff=lfs merge=lfs -text
 example_outs/kill_bill_anime.png filter=lfs diff=lfs merge=lfs -text
+example_outs/cat_puppy_flux.png filter=lfs diff=lfs merge=lfs -text
+example_outs/cat_puppy_sd3.png filter=lfs diff=lfs merge=lfs -text
+example_outs/steak_bread.png filter=lfs diff=lfs merge=lfs -text
