@@ -96,10 +96,10 @@ def FlowEditRun(
 
     if model_type == 'FLUX':
         # pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.float16, token=os.getenv('HF_ACCESS_TOK'))
-        pipe = pipe_flux.clone() # still on CPU
+        pipe = pipe_flux # still on CPU
     elif model_type == 'SD3':
         # pipe = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16, token=os.getenv('HF_ACCESS_TOK'))
-        pipe = pipe_sd3.clone() # still on CPU
+        pipe = pipe_sd3 # still on CPU
     else:
         raise NotImplementedError(f"Model type {model_type} not implemented")
 
