@@ -104,7 +104,7 @@ def FlowEditRun(
         raise NotImplementedError(f"Model type {model_type} not implemented")
 
         scheduler = pipe.scheduler
-        pipe = pipe.to(device)
+        pipe = pipe.to("cuda")
 
 
 
