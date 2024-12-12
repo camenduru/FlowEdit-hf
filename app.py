@@ -53,11 +53,12 @@ def on_model_change(model_type):
 def get_examples():
     case = [
         ["inputs/cat.png", "SD3", 50,  3.5, 13.5, 33, "a cat sitting in the grass", "a puppy sitting in the grass", 0, 1, 42],
-        ["inputs/gas_station.png", "SD3", 50,  3.5, 13.5, 33, "cars are parked in front of a gas station with a sign that says \"CAFE\"", "cars are parked in front of a gas station with a sign that says \"CVPR\"", 0, 1, 42],
-        ["inputs/iguana.png", "SD3", 50,  3.5, 13.5, 31, "A large orange lizard sitting on a rock near the      ocean. The lizard is positioned in the center of the scene, with the ocean waves visible in the background. The rock is located close to the water, providing a picturesque setting for the lizard''s resting spot.", "A large dragon sitting on a rock near the ocean. The dragon is positioned in the center of the scene, with the ocean waves visible in the background. The rock is located close to the water, providing a picturesque setting for the dragon''s resting spot.", 0, 1, 42],
+        ["inputs/iguana.png", "SD3", 50,  3.5, 13.5, 31, "A large orange lizard sitting on a rock near the ocean. The lizard is positioned in the center of the scene, with the ocean waves visible in the background. The rock is located close to the water, providing a picturesque setting for the lizard''s resting spot.", "A large dragon sitting on a rock near the ocean. The dragon is positioned in the center of the scene, with the ocean waves visible in the background. The rock is located close to the water, providing a picturesque setting for the dragon''s resting spot.", 0, 1, 42],
         ["inputs/cat.png", "FLUX", 28,  1.5, 5.5, 24, "a cat sitting in the grass", "a puppy sitting in the grass", 0, 1, 42],
-        ["inputs/gas_station.png", "FLUX", 28,  1.5, 5.5, 24, "cars are parked in front of a gas station with a sign that says \"CAFE\"", "cars are parked in front of a gas station with a sign that says \"CVPR\"", 0, 1, 23],
+        ["inputs/gas_station.png", "FLUX", 28,  1.5, 5.5, 24, "A gas station with a white and red sign that reads \"CAFE\" There are several cars parked in front of the gas station, including a white car and a van." "A gas station with a white and red sign that reads \"CVPR\" There are several cars parked in front of the gas station, including a white car and a van.", 0, 1, 42],
         ["inputs/steak.png", "FLUX", 28,  1.5, 5.5, 24, "A steak accompanied by a side of leaf salad.", "A bread roll accompanied by a side of leaf salad.", 0, 1, 42],
+        ["inputs/killbill.png", "FLUX", 28,  2.5, 6.5, 25, "a blonde woman in a yellow jumpsuit holding a sword in front of her face", "a blonde woman in a yellow jumpsuit holding a sword in front of her face, anime style drawing", 14, 1, 42],
+
     ]
     return case
 
