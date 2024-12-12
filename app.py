@@ -55,9 +55,9 @@ def get_examples():
         ["inputs/cat.png", "SD3", 50,  3.5, 13.5, 33, "a cat sitting in the grass", "a puppy sitting in the grass", 0, 1, 42],
         ["inputs/iguana.png", "SD3", 50,  3.5, 13.5, 31, "A large orange lizard sitting on a rock near the ocean. The lizard is positioned in the center of the scene, with the ocean waves visible in the background. The rock is located close to the water, providing a picturesque setting for the lizard''s resting spot.", "A large dragon sitting on a rock near the ocean. The dragon is positioned in the center of the scene, with the ocean waves visible in the background. The rock is located close to the water, providing a picturesque setting for the dragon''s resting spot.", 0, 1, 42],
         ["inputs/cat.png", "FLUX", 28,  1.5, 5.5, 24, "a cat sitting in the grass", "a puppy sitting in the grass", 0, 1, 42],
-        ["inputs/gas_station.png", "FLUX", 28,  1.5, 5.5, 24, "A gas station with a white and red sign that reads \"CAFE\" There are several cars parked in front of the gas station, including a white car and a van." "A gas station with a white and red sign that reads \"CVPR\" There are several cars parked in front of the gas station, including a white car and a van.", 0, 1, 42],
+        ["inputs/gas_station.png", "FLUX", 28,  1.5, 5.5, 23, "A gas station with a white and red sign that reads \"CAFE\" There are several cars parked in front of the gas station, including a white car and a van." "A gas station with a white and red sign that reads \"CVPR\" There are several cars parked in front of the gas station, including a white car and a van.", 0, 1, 42],
         ["inputs/steak.png", "FLUX", 28,  1.5, 5.5, 24, "A steak accompanied by a side of leaf salad.", "A bread roll accompanied by a side of leaf salad.", 0, 1, 42],
-        ["inputs/kill_bill.png", "FLUX", 28,  2.5, 6.5, 25, "a blonde woman in a yellow jumpsuit holding a sword in front of her face", "a blonde woman in a yellow jumpsuit holding a sword in front of her face, anime style drawing", 14, 1, 42],
+        ["inputs/kill_bill.png", "FLUX", 28,  2.5, 6.5, 22, "a blonde woman in a yellow jumpsuit holding a sword in front of her face", "a blonde woman in a yellow jumpsuit holding a sword in front of her face, anime style drawing", 14, 1, 42],
 
     ]
     return case
@@ -76,35 +76,8 @@ def FlowEditRun(
     n_min: int,
     n_avg: int,
     seed: int,
-    # oauth_token: Optional[gr.OAuthToken] = None
 
     ):
-
-    # if oauth_token is None:
-    #     raise gr.Error("You must be logged in to use Stable Diffusion 3.0 and FLUX.1 models.")
-    # if model_type == 'SD3':
-    #     try:
-    #         print(f'token: {oauth_token.token}')
-    #         huggingface_hub.get_hf_file_metadata(huggingface_hub.hf_hub_url(SD3STRING, 'transformer/diffusion_pytorch_model.safetensors'),
-    #                                                 token=oauth_token.token)
-    #         print('Has Access')
-    #     # except huggingface_hub.utils._errors.GatedRepoError:
-    #     except huggingface_hub.errors.GatedRepoError:
-    #         raise gr.Error("You need to accept the license agreement to use Stable Diffusion 3. "
-    #                         "Visit the <a href='https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers'>"
-    #                         "model page</a> to get access.")
-    # elif model_type == 'FLUX':
-    #     try:
-    #         huggingface_hub.get_hf_file_metadata(huggingface_hub.hf_hub_url(FLUXSTRING, 'flux1-dev.safetensors'),
-    #                                                 token=oauth_token.token)
-    #         print('Has Access')
-    #     # except huggingface_hub.utils._errors.GatedRepoError:
-    #     except huggingface_hub.errors.GatedRepoError:
-    #         raise gr.Error("You need to accept the license agreement to use FLUX.1. "
-    #                         "Visit the <a href='https://huggingface.co/black-forest-labs/FLUX.1-dev'>"
-    #                         "model page</a> to get access.")
-    # else:
-    #     raise NotImplementedError(f"Model type {model_type} not implemented")
 
     if not len(src_prompt):
         raise gr.Error("source prompt cannot be empty")
