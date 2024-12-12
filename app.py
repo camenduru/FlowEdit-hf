@@ -56,12 +56,12 @@ def on_model_change(model_type):
 
 def get_examples():
     case = [
-        ["inputs/cat.png", "SD3", 50,  3.5, 13.5, 33, "a cat sitting in the grass", "a puppy sitting in the grass", 0, 1, 42],
-        ["inputs/iguana.png", "SD3", 50,  3.5, 13.5, 31, "A large orange lizard sitting on a rock near the ocean. The lizard is positioned in the center of the scene, with the ocean waves visible in the background. The rock is located close to the water, providing a picturesque setting for the lizard''s resting spot.", "A large dragon sitting on a rock near the ocean. The dragon is positioned in the center of the scene, with the ocean waves visible in the background. The rock is located close to the water, providing a picturesque setting for the dragon''s resting spot.", 0, 1, 42],
-        ["inputs/cat.png", "FLUX", 28,  1.5, 5.5, 24, "a cat sitting in the grass", "a puppy sitting in the grass", 0, 1, 42],
-        ["inputs/gas_station.png", "FLUX", 28,  1.5, 5.5, 23, "A gas station with a white and red sign that reads \"CAFE\" There are several cars parked in front of the gas station, including a white car and a van.", "A gas station with a white and red sign that reads \"CVPR\" There are several cars parked in front of the gas station, including a white car and a van.", 0, 1, 42],
-        ["inputs/steak.png", "FLUX", 28,  1.5, 5.5, 24, "A steak accompanied by a side of leaf salad.", "A bread roll accompanied by a side of leaf salad.", 0, 1, 42],
-        ["inputs/kill_bill.png", "FLUX", 28,  2.5, 6.5, 22, "a blonde woman in a yellow jumpsuit holding a sword in front of her face", "a blonde woman in a yellow jumpsuit holding a sword in front of her face, anime style drawing", 14, 1, 42],
+        ["inputs/cat.png", "SD3", 50,  3.5, 13.5, 33, "A small, fluffy kitten sitting in a grassy field. The kitten is positioned in the center of the scene, surrounded by a field. The kitten appears to be looking at something in the field.", "A small puppy sitting in a grassy field. The puppy is positioned in the center of the scene, surrounded by a field. The puppy appears to be looking at something in the field.", 0, 1, 42, "example_outs/cat_puppy_sd3.png"],
+        ["inputs/iguana.png", "SD3", 50,  3.5, 13.5, 31, "A large orange lizard sitting on a rock near the ocean. The lizard is positioned in the center of the scene, with the ocean waves visible in the background. The rock is located close to the water, providing a picturesque setting for the lizard''s resting spot.", "A large dragon sitting on a rock near the ocean. The dragon is positioned in the center of the scene, with the ocean waves visible in the background. The rock is located close to the water, providing a picturesque setting for the dragon''s resting spot.", 0, 1, 42, "example_outs/iguana_dragon.png"],
+        ["inputs/cat.png", "FLUX", 28,  1.5, 5.5, 23, "A small, fluffy kitten sitting in a grassy field. The kitten is positioned in the center of the scene, surrounded by a field. The kitten appears to be looking at something in the field.", "A small puppy sitting in a grassy field. The puppy is positioned in the center of the scene, surrounded by a field. The puppy appears to be looking at something in the field.", 0, 1, 42, "example_outs/cat_puppy_flux.png"],
+        ["inputs/gas_station.png", "FLUX", 28,  1.5, 5.5, 23, "A gas station with a white and red sign that reads \"CAFE\" There are several cars parked in front of the gas station, including a white car and a van.", "A gas station with a white and red sign that reads \"CVPR\" There are several cars parked in front of the gas station, including a white car and a van.", 0, 1, 42, "example_outs/gas_cafe_cvpr.png"],
+        ["inputs/steak.png", "FLUX", 28,  1.5, 5.5, 23, "A steak accompanied by a side of leaf salad.", "A bread roll accompanied by a side of leaf salad.", 0, 1, 42, "example_outs/steak_bread.png"],
+        ["inputs/kill_bill.png", "FLUX", 28,  2.5, 6.5, 22, "a blonde woman in a yellow jumpsuit holding a sword in front of her face", "a blonde woman in a yellow jumpsuit holding a sword in front of her face, anime style drawing", 14, 1, 42, "example_outs/kill_bill_anime.png"],
 
     ]
     return case
@@ -276,6 +276,7 @@ with gr.Blocks() as demo:
         label="Examples",
         examples=get_examples(),
         inputs=[image_src, model_type, T_steps, src_guidance_scale, tar_guidance_scale, n_max, src_prompt, tar_prompt, n_min, n_avg, seed],
+        outputs=[image_tar[0]],
     )
 
     model_type.input(fn=on_model_change, inputs=[model_type], outputs=[T_steps, src_guidance_scale, tar_guidance_scale, n_max])
