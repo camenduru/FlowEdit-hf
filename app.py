@@ -183,7 +183,7 @@ intro = """
     <a href="https://matankleiner.github.io/flowedit/">[Project Page]</a>&nbsp;|&nbsp;
     <a href="https://github.com/fallenshock/FlowEdit">[Code]</a>
 </h3>
-Gradio demo for FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models. See our project page for more details.
+🚧 Early Version 🚧 Gradio demo for FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models. See our project page for more details.
 
 <br>
 <br>Edit your image using Flow models! upload an image, add a description of it, and specify the edits you want to make.
