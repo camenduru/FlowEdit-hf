@@ -57,7 +57,7 @@ def get_examples():
         ["inputs/cat.png", "FLUX", 28,  1.5, 5.5, 24, "a cat sitting in the grass", "a puppy sitting in the grass", 0, 1, 42],
         ["inputs/gas_station.png", "FLUX", 28,  1.5, 5.5, 24, "A gas station with a white and red sign that reads \"CAFE\" There are several cars parked in front of the gas station, including a white car and a van." "A gas station with a white and red sign that reads \"CVPR\" There are several cars parked in front of the gas station, including a white car and a van.", 0, 1, 42],
         ["inputs/steak.png", "FLUX", 28,  1.5, 5.5, 24, "A steak accompanied by a side of leaf salad.", "A bread roll accompanied by a side of leaf salad.", 0, 1, 42],
-        ["inputs/killbill.png", "FLUX", 28,  2.5, 6.5, 25, "a blonde woman in a yellow jumpsuit holding a sword in front of her face", "a blonde woman in a yellow jumpsuit holding a sword in front of her face, anime style drawing", 14, 1, 42],
+        ["inputs/kill_bill.png", "FLUX", 28,  2.5, 6.5, 25, "a blonde woman in a yellow jumpsuit holding a sword in front of her face", "a blonde woman in a yellow jumpsuit holding a sword in front of her face, anime style drawing", 14, 1, 42],
 
     ]
     return case
