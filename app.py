@@ -18,7 +18,10 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 # device = "cpu"
 # model_type = 'SD3'
 
-# pipe = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16)
+pipe_sd3 = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16, token=os.getenv('HF_ACCESS_TOK'))
+pipe_flux = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.float16, token=os.getenv('HF_ACCESS_TOK'))
+
+
 # scheduler = pipe.scheduler
 # pipe = pipe.to(device)
 loaded_model = 'None'
@@ -63,7 +66,7 @@ def get_examples():
     return case
 
 
-@spaces.GPU(duration=95)
+@spaces.GPU(duration=60)
 def FlowEditRun(
     image_src: str,
     model_type: str,
@@ -84,22 +87,21 @@ def FlowEditRun(
     if not len(tar_prompt):
         raise gr.Error("target prompt cannot be empty")
 
-    global pipe
-    global scheduler
-    global loaded_model
+    # global pipe_sd3
+    # global scheduler
+    # global loaded_model
 
     # reload model only if different from the loaded model
-    if loaded_model != model_type:
+    # if loaded_model != model_type:
 
-        if model_type == 'FLUX':
-            # pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-schnell", torch_dtype=torch.float16) 
-            pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.float16, token=os.getenv('HF_ACCESS_TOK'))
-            loaded_model = 'FLUX'
-        elif model_type == 'SD3':
-            pipe = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16, token=os.getenv('HF_ACCESS_TOK'))
-            loaded_model = 'SD3'
-        else:
-            raise NotImplementedError(f"Model type {model_type} not implemented")
+    if model_type == 'FLUX':
+        # pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.float16, token=os.getenv('HF_ACCESS_TOK'))
+        pipe = pipe_flux.clone() # still on CPU
+    elif model_type == 'SD3':
+        # pipe = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16, token=os.getenv('HF_ACCESS_TOK'))
+        pipe = pipe_sd3.clone() # still on CPU
+    else:
+        raise NotImplementedError(f"Model type {model_type} not implemented")
 
         scheduler = pipe.scheduler
         pipe = pipe.to(device)
