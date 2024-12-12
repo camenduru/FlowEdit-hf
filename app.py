@@ -179,7 +179,7 @@ def FlowEditRun(
 intro = """
 <h1 style="font-weight: 1000; text-align: center; margin: 0px;">FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models</h1>
 <h3 style="margin-bottom: 10px; text-align: center;">
-    <a href="https://arxiv.org/">[Paper]</a>&nbsp;|&nbsp;
+    <a href="https://arxiv.org/abs/2412.08629">[Paper]</a>&nbsp;|&nbsp;
     <a href="https://matankleiner.github.io/flowedit/">[Project Page]</a>&nbsp;|&nbsp;
     <a href="https://github.com/fallenshock/FlowEdit">[Code]</a>
 </h3>
