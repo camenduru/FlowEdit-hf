@@ -275,7 +275,7 @@ with gr.Blocks() as demo:
     gr.Examples(
         label="Examples",
         examples=get_examples(),
-        inputs=[image_src, model_type, T_steps, src_guidance_scale, tar_guidance_scale, n_max, src_prompt, tar_prompt, n_min, n_avg, seed],
+        inputs=[image_src, model_type, T_steps, src_guidance_scale, tar_guidance_scale, n_max, src_prompt, tar_prompt, n_min, n_avg, seed, image_tar],
         outputs=[image_tar],
     )
 
