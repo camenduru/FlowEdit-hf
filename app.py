@@ -67,7 +67,7 @@ def get_examples():
     return case
 
 
-@spaces.GPU(duration=60)
+@spaces.GPU(duration=75)
 def FlowEditRun(
     image_src: str,
     model_type: str,
